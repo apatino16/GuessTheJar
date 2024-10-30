@@ -20,15 +20,9 @@ public class GuessingGame {
       int playerGuess; 
       
       while(true){
-        playerGuess = prompter.promptForGuess();
-        
-        // Check guess is within range
-        if (!prompter.displayIfOutOfRange(playerGuess, jar.getMaxNum())){
-          continue;
-        };
-        
-        guessCount++;
-        
+        playerGuess = prompter.promptForGuess(jar.getMaxNum());
+        guessCount++; // Only increment count if guess is within range
+       
         // Display feedback for the guess
         prompter.displayGuessFeedback(playerGuess, jar.getCurrentItems());
         
