@@ -24,22 +24,21 @@ public class Prompter{
       System.out.printf("How many %s are in the jar? Pick a number between 1 and %d. %n", itemType, maxQty);
   }
   
-   // Prompt the player for a guess
-  public int promptForGuess(){
+   // Prompt the player for a guess and validate that it's within range
+  public int promptForGuess(int maxQty){
+    int playerGuess;
+    while(true){
         System.out.print("Enter your guess: ");
-        return scnr.nextInt();
-  }
-  
-    // Check guess is within range
-  public boolean displayIfOutOfRange(int playerGuess, int maxQty){
-      if (playerGuess < 1 || playerGuess > maxQty){
-        System.out.printf("Your guess must be between 1 and %d. %n", maxQty);
-        return false;
+        playerGuess = scnr.nextInt();
+      if (playerGuess > maxQty){
+        System.out.printf("Your guess must be less than the maimum fill amount %d. Try again. %n", maxQty);
+      } else {
+        break; // valid guess
       }
-    return true;
+    }
+    return playerGuess;
   }
-
-        
+      
   // Display feedback based on the guess being too high, too low or correct
   public void displayGuessFeedback(int playerGuess, int currentItems){
         if (playerGuess > currentItems){
